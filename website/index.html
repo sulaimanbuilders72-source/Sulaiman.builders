@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sulaiman Builders</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: white;
+      background: #0d0d0d;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      transition: 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+    }
+
+    .logo h1 {
+      color: #ffd700;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    /* ===== HAMBURGER ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #ffd700;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    nav ul.mobile-active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 65px;
+      right: 10%;
+      background: rgba(0, 0, 0, 0.95);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      gap: 15px;
+      text-align: right;
+      animation: fadeIn 0.4s ease;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('sulaimanbuilders.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 2px 2px 6px black;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #f5f5f5;
+    }
+
+    section {
+      padding: 80px 10%;
+      text-align: center;
+      background: #121212;
+    }
+
+    section:nth-child(even) {
+      background: #1c1c1c;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background: #ffd700;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .project {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 10px 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .project h3 {
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #ddd;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+
+    ul li {
+      background: rgba(255,255,255,0.05);
+      padding: 12px;
+      margin: 8px auto;
+      width: 60%;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .contact-form, .contact-info {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      flex: 1 1 350px;
+      max-width: 500px;
+    }
+
+    .contact-info h3 {
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px 0;
+      color: #ddd;
+      font-size: 1rem;
+    }
+
+    .contact-item svg {
+      color: #ffd700;
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .contact-info a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      resize: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #bbb;
+    }
+
+    button {
+      background: #ffd700;
+      color: black;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e6c200;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    footer {
+      background: #0a0a0a;
+      color: #ffd700;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .close-btn, .prev-btn, .next-btn {
+      position: absolute;
+      color: #ffd700;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.3s;
+    }
+
+    .close-btn {
+      top: 5%;
+      right: 5%;
+      font-size: 2.5rem;
+      transform: none;
+    }
+
+    .prev-btn { left: 5%; }
+    .next-btn { right: 5%; }
+    .close-btn:hover, .prev-btn:hover, .next-btn:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      ul li {
+        width: 100%;
+      }
+      .contact-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="logo">
+      <img src="sulaimanbuilders.jpg" alt="Logo">
+      <h1>SULAIMAN BUILDERS</h1>
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <header id="home">
+    <h1 data-aos="fade-up">SULAIMAN BUILDERS</h1>
+    <p data-aos="fade-up" data-aos-delay="200">Building Dreams Into Reality</p>
+  </header>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" data-aos="fade-up">
+    <h2>Recent Projects</h2>
+    <div class="projects">
+      <div class="project" id="project1" data-aos="zoom-in">
+        <img src="project 1.jpg" alt="Project 1">
+        <h3>Premium Apartment</h3>
+        <p>Premium Apartment constructed with elegant architecture and fine detailing.</p>
+      </div>
+     <div class="project" id="project2" data-aos="zoom-in" data-aos-delay="200">
+        <img src="project 2.jpg" alt="Project 2">
+        <h3>Commercial Property</h3>
+        <p>Designed with a modern look and elegant finish. The building features a stylish grey and gold exterior with clean design elements, offering a spacious and attractive venue for all types of events, with all the facility.</p>
+      </div>
+      <div class="project" id="project3" data-aos="zoom-in">
+        <img src="project 3.jpg" alt="Project 3">
+        <h3>Residential Construction</h3>
+        <p>modern two-story residential building featuring a sleek geometric façade with elegant beige and brown tones. The design includes spacious balconies, stylish metal railings, and dual entry gates.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" data-aos="fade-up">
+    <h2>About Us</h2>
+    <p>
+      Sulaiman Builders is a trusted construction company delivering high-quality projects across Mysore & Bangalore.
+      We specialize in residential, commercial, and interior design projects with a focus on excellence, 
+      sustainability, and client satisfaction. We have over a decade of experience in handovering projects on time. 
+    </p>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" data-aos="fade-up">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Residential Construction</li>
+      <li>Commercial Projects</li>
+      <li>Architectural Design</li>
+      <li>Interior Designing</li>
+      <li>Renovation & Remodeling</li>
+    </ul>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your Name" required>
+          <input type="tel" id="phone" placeholder="Contact Number" required>
+          <input type="email" id="email" placeholder="Email ID" required>
+          <input type="text" id="location" placeholder="Your Location" required>
+          <textarea id="description" rows="4" placeholder="Describe Your Requirement" required></textarea>
+          <button type="submit">send Message</button>
+          <p id="status"></p>
+        </form>
+      </div>
+
+      <div class="contact-info" data-aos="fade-left">
+        <h3>Get in Touch</h3>
+        <div class="contact-item"><i data-lucide="phone"></i> +91 99000 08878 / +91 90194 76408</div>
+        <div class="contact-item"><i data-lucide="mail"></i> <a href="mailto:sulaimanbuilders72@gmail.com">sulaimanbuilders72@gmail.com</a></div>
+        <div class="contact-item"><i data-lucide="instagram"></i> <a href="https://www.instagram.com/sulaiman.builders" target="_blank">@sulaiman.builders</a></div>
+        <div class="contact-item"><i data-lucide="map-pin"></i> Mysore , India</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>Follow us on Instagram:
+      <a href="https://www.instagram.com/sulaiman.builders" target="_blank">@sulaiman.builders</a>
+    </p>
+    <p>&copy; 2025 Sulaiman Builders | All Rights Reserved</p>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <button class="prev-btn" id="prevBtn">&#10094;</button>
+    <img id="lightboxImg" src="" alt="Project Image">
+    <button class="next-btn" id="nextBtn">&#10095;</button>
+  </div>
+
+  <!-- ===== PROJECT LIGHTBOX SCRIPT ===== -->
+  <!-- ===== PROJECT LIGHTBOX SCRIPT ===== -->
+<script>
+  // Image sets for each project
+  const projectImages = {
+    project1: ["project 1.jpg", "int1pj1.jpg", "int2pj1.jpg", "int3pj1.jpg"],
+    project2: ["project 2.jpg", "int1pj2.jpg", "int2pj2.jpg", "int3pj2.jpg"]
+  };
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const closeBtn = document.getElementById("closeBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function showImage(index) {
+    lightboxImg.src = currentImages[index];
+  }
+
+  function openLightbox(images) {
+    currentImages = images;
+    currentIndex = 0;
+    lightbox.style.display = "flex";
+    showImage(currentIndex);
+  }
+
+  document.getElementById("project1").addEventListener("click", () => openLightbox(projectImages.project1));
+  document.getElementById("project2").addEventListener("click", () => openLightbox(projectImages.project2));
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    showImage(currentIndex);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    showImage(currentIndex);
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.style.display = "none";
+  });
+</script>
+
+
+ <!-- ===== EMAILJS SCRIPT ===== -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init({
+      publicKey: "69M-NHxFv-S4D8AT6" // replace this with your actual EmailJS public key
+    });
+  })();
+
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("status");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const payload = {
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      location: document.getElementById("location").value,
+      description: document.getElementById("description").value
+    };
+
+    emailjs.send("service_i6ixgd8", "template_em884bk", payload)
+      .then(() => {
+        statusEl.style.color = "#00ff66";
+        statusEl.textContent = "✅ Message sent successfully! We’ll contact you shortly.";
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        statusEl.style.color = "#ff4444";
+        statusEl.textContent = "❌ Failed to send message. Please try again later.";
+      });
+  });
+</script>
+
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    lucide.createIcons();
+  </script>
+
+  <!-- HAMBURGER MENU -->
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      navLinks.classList.toggle("mobile-active");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        navLinks.classList.remove("mobile-active");
+      });
+    });
+  </script>
+</body>
+</html>
